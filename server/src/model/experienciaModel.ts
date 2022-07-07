@@ -3,15 +3,13 @@ import {connection} from '../services/database.service'
 class Experiencia{  
     async getExperiences(){
         const queryStr = 'SELECT * FROM experiencias'
-        const client = await connection();
-        const result = await client.query(queryStr);
+        const result:any = await connection(queryStr)
         return result.rows;
     }
 
     async getOneExperience(id: any){
         const queryStr = 'SELECT * FROM experiencias WHERE id=$1'
-        const client = await connection();
-        const result = await client.query(queryStr,[id]);
+        const result:any = await connection(queryStr,[id])
         return result.rows;
     }
 }

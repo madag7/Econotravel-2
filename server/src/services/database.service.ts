@@ -1,16 +1,16 @@
 import { config } from './config'
 import { Client } from 'pg'
 
-const url = config();
+const url: any = config();
 
-const client = new Client (url);
 
-export const connection = async () =>{
+export const connection = (queryStr:string, values:string[]=[]) =>{
     try{
-        await client.connect();
-        console.log('Connected successfully to server');      
+        const client = new Client (url);
+        console.log('Connected successfully to server');
+
+        return client.query(queryStr,values);
     } catch (error){
         console.log(error)
     }
-    return client;
 }
