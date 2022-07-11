@@ -7,7 +7,7 @@ class User {
         const values = [users.nombre, users.email, users.password] as string[]
         const result:any = await connection.query(queryStr,values)
         console.log(values)
-        return result.rows[0];
+        return result.rows;
        
     }
 
