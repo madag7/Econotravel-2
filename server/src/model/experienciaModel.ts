@@ -1,15 +1,17 @@
-import {connection} from '../services/database.service'
+import connection from '../services/database.service'
 
 class Experiencia{  
     async getExperiences(){
-        const queryStr = 'SELECT * FROM experiencias'
-        const result:any = await connection(queryStr)
+        const queryStr = 'SELECT * FROM experiencias;'
+        console.log(queryStr)
+        const result:any = await connection.query(queryStr,[])
+        console.log(result.rows)
         return result.rows;
     }
 
     async getOneExperience(id: any){
-        const queryStr = 'SELECT * FROM experiencias WHERE id=$1'
-        const result:any = await connection(queryStr,[id])
+        const queryStr = 'SELECT * FROM experiencias WHERE id=$1;'
+        const result:any = await connection.query(queryStr,[id])
         return result.rows;
     }
 }

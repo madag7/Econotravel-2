@@ -1,16 +1,38 @@
-import { config } from './config'
-import { Client } from 'pg'
+import { Client } from 'pg';
+import { config } from './config';
 
-const url: any = config();
+class Database {
+    client: Client;
+    
+    constructor(config: any) {
+        this.client = new Client(config.uri);
+        console.log('Connecting to PostgreSQL...');
+    }
 
+    async connect() {
+        try {
+            this.client.connect();
+        } catch (error) {
+            console.error('Connection to Postgres failed!', error);
+            process.exit();
+        }
+    }
 
-export const connection = (queryStr:string, values:string[]=[]) =>{
-    try{
-        const client = new Client (url);
-        console.log('Connected successfully to server');
+    async end() {
+        this.client.end();
+    }
 
-        return client.query(queryStr,values);
-    } catch (error){
-        console.log(error)
+    async query(query: string, values?: any) {
+        try {
+            await this.connect();
+            const result = await this.client.query(query, values)
+            await this.end();
+            return result;
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
+
+export default new Database(config());
