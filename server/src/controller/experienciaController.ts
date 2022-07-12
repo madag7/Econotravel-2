@@ -12,6 +12,7 @@ const experienciaController = {
                 const experiences: any = await experienciaModel.getOneExperience(param);
                 res.json(experiences);
         }
+        
 }
 
 export default experienciaController;

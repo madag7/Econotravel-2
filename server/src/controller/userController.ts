@@ -32,5 +32,6 @@ const userController = {
             res.status(400).send(error.message);
         }
     }
+    
 }
 export default userController;
