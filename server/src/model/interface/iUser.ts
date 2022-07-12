@@ -5,4 +5,6 @@ export interface  iUserLogin{
 
 export interface  iUser extends  iUserLogin {
     nombre?: string;
+    rol?: string;
+    permisos?: string;
 }

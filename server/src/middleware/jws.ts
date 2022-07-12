@@ -1,5 +1,4 @@
 import {Request, Response,  NextFunction} from 'express';
-import userModel from '..//model/userModel';
 import jwt from 'jsonwebtoken'
 import { config } from '../services/config';
 
@@ -7,11 +6,13 @@ const {secret} = config()
 
 const generateToken = async (req: Request, res: Response, next: NextFunction) =>{
     try{
-        const token = await jwt.sign(req.body.email, 'secretkey', { expiresIn: '30s'})
+        const token = await jwt.sign(req.body.email, secret)
+        console.log(token)
         req.body.token = token
+        
         next()
     }catch(error: any){
-        res.status(400).send(error.message);
+        res.status(400).send("Error al generar el token");
     }
 }
 
