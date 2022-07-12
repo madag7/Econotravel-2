@@ -21,6 +21,13 @@ class Experiencia{
         const result:any= await connection.query(queryStr,[exp.img, exp.titulo, exp.descripcion, exp.precio, exp.duracion, exp.accesibilidad,exp.et_ubicacion, exp.et_transporte, exp.et_duracion]);
         return result.rows;
     }
+
+    async modifExperience( experiencia_id:any){
+        const queryStr='UPDATE experiencias SET (img, titulo, descripcion, precio, duracion, accesibilidad, et_ubicacion, et_transporte,et_duracion) = ($1,$2,$3,$4,$5,$6,$7,$8,$9)  WHERE experiencia_id = $1 RETURNING *';
+        const result:any = await connection.query(queryStr,[experiencia_id.img, experiencia_id.titulo, experiencia_id.descripcion, experiencia_id.precio, experiencia_id.duracion, experiencia_id.accesibilidad,experiencia_id.et_ubicacion, experiencia_id.et_transporte, experiencia_id.et_duracion, experiencia_id]);
+        console.log(result)
+        return result.rows;
+   }
 }
 
 export default new Experiencia(); 
