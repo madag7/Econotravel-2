@@ -20,7 +20,7 @@ const generateToken = async (req: Request, res: Response, next: NextFunction) =>
 const validateToken= (req: any, res: Response, next: NextFunction) => {
     const bearerHeader = req.headers['authorization'];
 
-    if(typeof bearerHeader !== 'undefined') {
+    if(typeof bearerHeader !== undefined) {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
         req.token = bearerToken;
@@ -32,7 +32,6 @@ const validateToken= (req: any, res: Response, next: NextFunction) => {
                 next();
             }
         });
-        next();
     } else {
         res.sendStatus(403);
     }
