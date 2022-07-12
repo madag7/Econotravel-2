@@ -42,6 +42,7 @@ const experienciaController = {
         modifExperience: async (req:Request,res:Response) => {
                 try{
                         const{img, titulo, descripcion, precio, duracion, accesibilidad, et_ubicacion, et_transporte, et_duracion, ...experiencias}: iExperiencia= req.body
+                        console.dir(req.body)
                         const result = await experienciaModel.modifExperience({img, titulo, descripcion, precio, duracion, accesibilidad, et_ubicacion, et_transporte, et_duracion, ...experiencias});
 
                         result

@@ -1,11 +1,11 @@
-import {Pool} from 'pg';
+import { Client } from 'pg';
 import { config } from './config';
 
 class Database {
-    client: Pool;
+    client: Client;
     
     constructor(config: any) {
-        this.client = new Pool({connectionString: config.uri});
+        this.client = new Client(config.uri);
         console.log('Connecting to PostgreSQL...');
     }
 
@@ -18,10 +18,15 @@ class Database {
         }
     }
 
+    async end() {
+        this.client.end();
+    }
+
     async query(query: string, values?: any) {
         try {
             await this.connect();
-            const result = await this.client.query(query, values);
+            const result = await this.client.query(query, values)
+            await this.end();
             return result;
 
         } catch (error) {

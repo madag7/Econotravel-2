@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./build/server.js",
   "scripts": {
-    "start:dev": "ts-node-dev",
+    "start:dev": "ts-node-dev src/server",
     "start":"node .",
     "test": "jest",
     "build": "tsc --build"
