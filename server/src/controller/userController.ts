@@ -5,9 +5,9 @@ import userModel from '../model/userModel';
 const userController = {
     saveUser: async (req: Request, res: Response)=>{
         try{
-            const {nombre, email, password, ...users}: iUser = req.body;
+            const {nombre, email, password, rol, permisos, ...users}: iUser = req.body;
             
-            if(!email  || !password || !nombre){
+            if(!email  || !password || !nombre || !rol || !permisos){
                 res.status(400).send('Falta el correo electrónico o contraseña');
             }
             

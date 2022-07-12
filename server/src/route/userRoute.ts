@@ -5,7 +5,7 @@ import jws from '../middleware/jws';
 
 const router = Router();
 
-router.get('/users/all', jws.validateToken, userController.getAllUsers)
-router.post('/users', encryptPassword, userController.saveUser);
+router.get('/user', jws.validateToken, userController.getAllUsers)
+router.post('/user', encryptPassword, userController.saveUser);
 
 export default router
