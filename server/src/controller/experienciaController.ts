@@ -8,7 +8,7 @@ const experienciaController = {
         },
         
         getOneExperience: async (req:Request,res:Response) =>{
-                const param = req.params['id'];
+                const param = req.params['experiencia_id'];
                 const experiences: any = await experienciaModel.getOneExperience(param);
                 res.json(experiences);
         }

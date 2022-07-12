@@ -9,9 +9,9 @@ class Experiencia{
         return result.rows;
     }
 
-    async getOneExperience(id: any){
-        const queryStr = 'SELECT * FROM experiencias WHERE id=$1;'
-        const result:any = await connection.query(queryStr,[id])
+    async getOneExperience(experiencia_id: any){
+        const queryStr = 'SELECT * FROM experiencias WHERE experiencia_id=$1;'
+        const result:any = await connection.query(queryStr,[experiencia_id])
         return result.rows;
     }
 }
