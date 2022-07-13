@@ -134,6 +134,7 @@ var experienciaController = {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, img = _a.img, titulo = _a.titulo, descripcion = _a.descripcion, precio = _a.precio, duracion = _a.duracion, accesibilidad = _a.accesibilidad, et_ubicacion = _a.et_ubicacion, et_transporte = _a.et_transporte, et_duracion = _a.et_duracion, experiencias = __rest(_a, ["img", "titulo", "descripcion", "precio", "duracion", "accesibilidad", "et_ubicacion", "et_transporte", "et_duracion"]);
+                    console.dir(req.body);
                     return [4 /*yield*/, experienciaModel_1["default"].modifExperience(__assign({ img: img, titulo: titulo, descripcion: descripcion, precio: precio, duracion: duracion, accesibilidad: accesibilidad, et_ubicacion: et_ubicacion, et_transporte: et_transporte, et_duracion: et_duracion }, experiencias))];
                 case 1:
                     result = _b.sent();

@@ -66,7 +66,7 @@ var generateToken = function (req, res, next) { return __awaiter(void 0, void 0,
 }); };
 var validateToken = function (req, res, next) {
     var bearerHeader = req.headers['authorization'];
-    if (typeof bearerHeader !== 'undefined') {
+    if (typeof bearerHeader !== undefined) {
         var bearer = bearerHeader.split(' ');
         var bearerToken = bearer[1];
         req.token = bearerToken;
@@ -78,7 +78,6 @@ var validateToken = function (req, res, next) {
                 next();
             }
         });
-        next();
     }
     else {
         res.sendStatus(403);

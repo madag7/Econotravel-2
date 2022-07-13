@@ -90,14 +90,14 @@ var Experiencia = /** @class */ (function () {
             });
         });
     };
-    Experiencia.prototype.modifExperience = function (experiencia_id) {
+    Experiencia.prototype.modifExperience = function (exp) {
         return __awaiter(this, void 0, void 0, function () {
             var queryStr, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        queryStr = 'UPDATE experiencias SET (img, titulo, descripcion, precio, duracion, accesibilidad, et_ubicacion, et_transporte,et_duracion) = ($1,$2,$3,$4,$5,$6,$7,$8,$9)  WHERE experiencia_id = $1 RETURNING *';
-                        return [4 /*yield*/, database_service_1["default"].query(queryStr, [experiencia_id.img, experiencia_id.titulo, experiencia_id.descripcion, experiencia_id.precio, experiencia_id.duracion, experiencia_id.accesibilidad, experiencia_id.et_ubicacion, experiencia_id.et_transporte, experiencia_id.et_duracion, experiencia_id])];
+                        queryStr = 'UPDATE experiencias SET (img, titulo, descripcion, precio, duracion, accesibilidad, et_ubicacion, et_transporte,et_duracion) = ($1,$2,$3,$4,$5,$6,$7,$8,$9)  WHERE experiencia_id = $10 RETURNING *';
+                        return [4 /*yield*/, database_service_1["default"].query(queryStr, [exp.img, exp.titulo, exp.descripcion, exp.precio, exp.duracion, exp.accesibilidad, exp.et_ubicacion, exp.et_transporte, exp.et_duracion, exp.experiencia_id])];
                     case 1:
                         result = _a.sent();
                         console.log(result);
