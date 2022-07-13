@@ -1,4 +1,4 @@
-import {Pool} from 'pg';
+import { Pool } from 'pg';
 import { config } from './config';
 
 class Database {
@@ -21,7 +21,7 @@ class Database {
     async query(query: string, values?: any) {
         try {
             await this.connect();
-            const result = await this.client.query(query, values);
+            const result = await this.client.query(query, values)
             return result;
 
         } catch (error) {

@@ -1,5 +1,10 @@
 {
   "compilerOptions": {  
-    "esModuleInterop": true  
-  }
+    "esModuleInterop": true,
+    "outDir": "build",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "./__*/**/*"
+  ]
 }
