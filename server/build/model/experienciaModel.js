@@ -75,7 +75,7 @@ var Experiencia = /** @class */ (function () {
             });
         });
     };
-    Experiencia.prototype.saveExperiencia = function (exp) {
+    Experiencia.prototype.saveExperience = function (exp) {
         return __awaiter(this, void 0, void 0, function () {
             var queryStr, result;
             return __generator(this, function (_a) {
@@ -101,6 +101,21 @@ var Experiencia = /** @class */ (function () {
                     case 1:
                         result = _a.sent();
                         console.log(result);
+                        return [2 /*return*/, result.rows];
+                }
+            });
+        });
+    };
+    Experiencia.prototype.deleteExperience = function (experiencia_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var queryStr, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        queryStr = 'DELETE FROM experiencias WHERE experiencia_id=$1 RETURNING *';
+                        return [4 /*yield*/, database_service_1["default"].query(queryStr, [experiencia_id])];
+                    case 1:
+                        result = _a.sent();
                         return [2 /*return*/, result.rows];
                 }
             });

@@ -22,7 +22,7 @@ const experienciaController = {
                 }
         },
 
-        saveExperiencia: async (req:Request,res:Response)=>{
+        saveExperience: async (req:Request,res:Response)=>{
                 try{
                         const{img, titulo, descripcion, precio, duracion, accesibilidad, et_ubicacion, et_transporte, et_duracion, ...experiencias}: iExperiencia= req.body
 
@@ -30,7 +30,7 @@ const experienciaController = {
                                 res.status(400).json({message:'Falta alguno de los apartados'});
                         }
 
-                        const result = await experienciaModel.saveExperiencia({img, titulo, descripcion, precio, duracion, accesibilidad, et_ubicacion, et_transporte, et_duracion, ...experiencias});
+                        const result = await experienciaModel.saveExperience({img, titulo, descripcion, precio, duracion, accesibilidad, et_ubicacion, et_transporte, et_duracion, ...experiencias});
                         result
                                 ? res.status(201).json({ result: result.rows})
                                 : res.status(500).send('No se pudo crear una nueva experiencia');
@@ -51,8 +51,21 @@ const experienciaController = {
                 }catch (error: any){
                         res.status(400).send(error.message);
                 }
-        }
+        },
 
+        deleteExperience: async (req:Request,res:Response)=>{
+                try{
+                    const param = req.params.experiencia_id;
+                    console.log(param, "llegas al param")
+                    const result = await experienciaModel.deleteExperience(param);
+                    console.log(result, "llega al result")
+                    result
+                            ? res.status(201).json({ result: `Experiencia deleted with ID: ${param}`})
+                            : res.status(500).send('No se pudo borrar la experiencia seleccionada');
+                }catch (error: any){
+                    res.status(400).send(error.message);
+                }
+        }
 }
 
 export default experienciaController;

@@ -40,7 +40,7 @@ var pg_1 = require("pg");
 var config_1 = require("./config");
 var Database = /** @class */ (function () {
     function Database(config) {
-        this.client = new pg_1.Pool({ connectionString: config.uri });
+        this.client = new pg_1.Pool({ connectionString: config.uri, ssl: { rejectUnauthorized: false } });
         console.log('Connecting to PostgreSQL...');
     }
     Database.prototype.connect = function () {

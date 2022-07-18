@@ -83,9 +83,11 @@ var User = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         queryStr = 'SELECT * FROM users';
+                        console.log(queryStr);
                         return [4 /*yield*/, database_service_1["default"].query(queryStr)];
                     case 1:
                         result = _a.sent();
+                        console.log(result);
                         return [2 /*return*/, result.rows];
                 }
             });

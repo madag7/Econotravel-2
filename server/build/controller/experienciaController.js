@@ -102,7 +102,7 @@ var experienciaController = {
             }
         });
     }); },
-    saveExperiencia: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    saveExperience: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
         var _a, img, titulo, descripcion, precio, duracion, accesibilidad, et_ubicacion, et_transporte, et_duracion, experiencias, result, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -112,7 +112,7 @@ var experienciaController = {
                     if (!img || !titulo || !descripcion || !precio || !duracion || !accesibilidad || !et_ubicacion || !et_transporte || !et_duracion) {
                         res.status(400).json({ message: 'Falta alguno de los apartados' });
                     }
-                    return [4 /*yield*/, experienciaModel_1["default"].saveExperiencia(__assign({ img: img, titulo: titulo, descripcion: descripcion, precio: precio, duracion: duracion, accesibilidad: accesibilidad, et_ubicacion: et_ubicacion, et_transporte: et_transporte, et_duracion: et_duracion }, experiencias))];
+                    return [4 /*yield*/, experienciaModel_1["default"].saveExperience(__assign({ img: img, titulo: titulo, descripcion: descripcion, precio: precio, duracion: duracion, accesibilidad: accesibilidad, et_ubicacion: et_ubicacion, et_transporte: et_transporte, et_duracion: et_duracion }, experiencias))];
                 case 1:
                     result = _b.sent();
                     result
@@ -145,6 +145,30 @@ var experienciaController = {
                 case 2:
                     error_4 = _b.sent();
                     res.status(400).send(error_4.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); },
+    deleteExperience: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+        var param, result, error_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    param = req.params.experiencia_id;
+                    console.log(param, "llegas al param");
+                    return [4 /*yield*/, experienciaModel_1["default"].deleteExperience(param)];
+                case 1:
+                    result = _a.sent();
+                    console.log(result, "llega al result");
+                    result
+                        ? res.status(201).json({ result: "Experiencia deleted with ID: ".concat(param) })
+                        : res.status(500).send('No se pudo borrar la experiencia seleccionada');
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_5 = _a.sent();
+                    res.status(400).send(error_5.message);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
