@@ -20,7 +20,6 @@ class Database {
 
     async query(query: string, values?: any) {
         try {
-            await this.connect();
             const result = await this.client.query(query, values)
             return result;
 
