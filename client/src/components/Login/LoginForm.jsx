@@ -26,9 +26,9 @@ export default function LoginForm() {
       .login(user)
       .then((res) => {
         console.log(res.data);
-        setUser(res.data.accessToken);
-        localStorage.setItem("user", res.data.accessToken);
-        if (res.data.accessToken) {
+        setUser(res.data.token);
+        localStorage.setItem("user", res.data.token);
+        if (res.data.token) {
           navigation("/myprofile", { replace: true });
         }
       })
