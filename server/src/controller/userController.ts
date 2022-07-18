@@ -5,15 +5,15 @@ import userModel from '../model/userModel';
 const userController = {
     saveUser: async (req: Request, res: Response)=>{
         try{
-            const {nombre, email, password, rol, permisos, ...users}: iUser = req.body;
-            
+            const {nombre, email, password, rol, permisos }: iUser = req.body;
+            console.dir(req.body)
             if(!email  || !password || !nombre || !rol || !permisos){
                 res.status(400).send('Falta el correo electrónico o contraseña');
             }
             
-            const result = await userModel.saveUser({nombre, email, password, ...users});
+            const result = await userModel.saveUser({nombre, email, password, rol,permisos });
             result
-                ? res.status(201).json({ result: result.rows}) 
+                ? res.status(201).json({ result: result}) 
                 : res.status(500).send('No se pudo crear un nuevo usuario');
         }catch(error: any){
             res.status(400).send(error.message);

@@ -4,12 +4,10 @@ import userModel from '../model/userModel';
 
 export const encryptPassword= async (req: Request,res: Response, next: NextFunction) =>{
     try{
-        console.log(req.body)
         if(!req.body.password){ 
             res.send('password missing')
         } else{ 
             const saltRounds= 10;
-            console.log(req.body.password)
             const passwordHash = await bcrypt.hash(req.body.password, saltRounds);
             req.body.password= passwordHash;
             next();        
@@ -31,7 +29,7 @@ const validateUser = async (req: Request,res: Response, next: NextFunction)=>{
         const comparePassword = await bcrypt.compare(password, result.password);
 
         if(comparePassword){
-            req.body.rol= result.users.rol
+            req.body.rol= result.rol
             next();
         } else {
             throw new Error('password not valid');
