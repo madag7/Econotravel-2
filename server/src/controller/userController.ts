@@ -7,7 +7,7 @@ const userController = {
         try{
             const {nombre, email, password, rol, permisos, ...users}: iUser = req.body;
             
-            if(!email  || !password || !nombre || !rol || !permisos){
+            if(!email  || !password){
                 res.status(400).send('Falta el correo electrónico o contraseña');
             }
             

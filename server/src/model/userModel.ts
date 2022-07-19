@@ -20,8 +20,15 @@ class User {
 
     async getAllUsers (){
         const queryStr = 'SELECT * FROM users';
-        const result:any = await connection.query(queryStr)
+        const result:any = await connection.query(queryStr, [])
         return result.rows;
+    }
+
+    async getUserByEmail(email: string){
+        const queryStr = 'SELECT * FROM users WHERE email= $1'
+        const values = [email]
+        const result:any = await connection.query(queryStr,values)
+        return result.rows[0];
     }
 }
 

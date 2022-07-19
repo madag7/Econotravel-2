@@ -97,7 +97,6 @@ var userController = {
                     return [4 /*yield*/, userModel_1["default"].getAllUsers()];
                 case 1:
                     result = _a.sent();
-                    console.log(result);
                     result
                         ? res.status(201).json(result)
                         : res.status(500).send('Hubo un error en la obtención los datos');
