@@ -20,7 +20,8 @@ class User {
 
     async getAllUsers (){
         const queryStr = 'SELECT * FROM users';
-        const result:any = await connection.query(queryStr)
+        console.log(queryStr)
+        const result:any = await connection.query(queryStr,[])
         return result.rows;
     }
 }

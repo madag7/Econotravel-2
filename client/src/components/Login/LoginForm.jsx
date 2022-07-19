@@ -1,23 +1,15 @@
 import React, { useState } from "react";
 import { FlexColumn, Form1, InputForm, LabelForm } from "../styles/Styles";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { authService } from "../../servicios/auth.service";
+
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigation = useNavigate();
-  const [user, setUser] = useState();
-
-
-  const handleLogin = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-  };
-
+  const [user, setUser] = useState({ email, password });
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = { email: email, password: password };
@@ -25,11 +17,11 @@ export default function LoginForm() {
     authService
       .login(user)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.token)
         setUser(res.data.token);
         localStorage.setItem("user", res.data.token);
         if (res.data.token) {
-          navigation("/myprofile", { replace: true });
+          return <Navigate to={"/myprofile"} />;
         }
       })
       .catch(() => setError("Hubo un error"));

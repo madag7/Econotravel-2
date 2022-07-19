@@ -19,10 +19,20 @@ const userController = {
             res.status(400).send(error.message);
         }
     },
-
+/*
+    getOneUser: async (req:Request,res:Response) =>{
+        try{
+                const param = req.params['user_id'];
+                const user: any = await userModel.getOneUser(param);
+                res.json(user);
+        }catch (error: any){
+                res.status(400).send(error.message);
+        }
+},
+*/
     getAllUsers:  async (req: Request, res: Response) => {
         try {
-            const result = await userModel.getAllUsers();
+            const result: any = await userModel.getAllUsers();
         
             result
                 ? res.status(201).json(result)

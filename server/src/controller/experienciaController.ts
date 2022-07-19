@@ -15,8 +15,8 @@ const experienciaController = {
         getOneExperience: async (req:Request,res:Response) =>{
                 try{
                         const param = req.params['experiencia_id'];
-                        const experiences: any = await experienciaModel.getOneExperience(param);
-                        res.json(experiences);
+                        const experience: any = await experienciaModel.getOneExperience(param);
+                        res.json(experience);
                 }catch (error: any){
                         res.status(400).send(error.message);
                 }
