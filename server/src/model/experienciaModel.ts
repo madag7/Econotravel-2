@@ -6,7 +6,6 @@ class Experiencia{
         const queryStr = 'SELECT * FROM experiencias;'
         console.log(queryStr)
         const result:any = await connection.query(queryStr,[])
-        console.log(result.rows)
         return result.rows;
     }
 

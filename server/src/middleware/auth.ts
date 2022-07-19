@@ -4,12 +4,10 @@ import userModel from '../model/userModel';
 
 export const encryptPassword= async (req: Request,res: Response, next: NextFunction) =>{
     try{
-        console.log(req.body)
         if(!req.body.password){ 
             res.send('password missing')
         } else{ 
             const saltRounds= 10;
-            console.log(req.body.password)
             const passwordHash = await bcrypt.hash(req.body.password, saltRounds);
             req.body.password= passwordHash;
             next();        

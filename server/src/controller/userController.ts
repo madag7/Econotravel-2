@@ -11,9 +11,9 @@ const userController = {
                 res.status(400).send('Falta el correo electrónico o contraseña');
             }
             
-            const result = await userModel.saveUser({nombre, email, password, ...users});
+            const result = await userModel.saveUser({nombre, email, password, rol,permisos });
             result
-                ? res.status(201).json({ result: result.rows}) 
+                ? res.status(201).json({ result: result}) 
                 : res.status(500).send('No se pudo crear un nuevo usuario');
         }catch(error: any){
             res.status(400).send(error.message);
