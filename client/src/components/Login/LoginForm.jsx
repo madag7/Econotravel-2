@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FlexColumn, Form1, InputForm, LabelForm } from "../styles/Styles";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authService } from "../../servicios/auth.service";
 
 
@@ -9,6 +9,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [user, setUser] = useState({ email, password });
+  const navigation = useNavigate();
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ export default function LoginForm() {
         setUser(res.data.token);
         localStorage.setItem("user", res.data.token);
         if (res.data.token) {
-          return <Navigate to={"/myprofile"} />;
+          navigation("/myprofile", { replace: true })
         }
       })
       .catch(() => setError("Hubo un error"));
