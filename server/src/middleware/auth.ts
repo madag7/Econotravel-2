@@ -29,7 +29,6 @@ const validateUser = async (req: Request,res: Response, next: NextFunction)=>{
         const comparePassword = await bcrypt.compare(password, result.password);
 
         if(comparePassword){
-            req.body.rol= result.rol
             next();
         } else {
             throw new Error('password not valid');

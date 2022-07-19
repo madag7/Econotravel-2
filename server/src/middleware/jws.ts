@@ -25,10 +25,11 @@ const validateToken= (req: any, res: Response, next: NextFunction) => {
         const bearerToken = bearer[1];
         req.token = bearerToken;
 
-        jwt.verify(req.token, secret, (err: any) => {
+        jwt.verify(req.token, secret, (err: any, decoded: any) => {
             if(err) {
             res.status(403).send("token no válido");
             } else {
+                req.body.email= decoded;
                 next();
             }
         });
