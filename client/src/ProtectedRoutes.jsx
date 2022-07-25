@@ -1,22 +1,26 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 
 export const ProtectedRoute = ({ children, redirectPath = "/Login"}) => {
     const [loggedUser, setLoggedUser]=useState(null)
+    const navigation = useNavigate();
 
-    useEffect= () =>{
+    useEffect(() =>{
         setLoggedUser(localStorage.getItem("user") || null)
+
+        if (loggedUser) {
+            navigation()
+        }else{
+            <Navigate to={redirectPath} replace />;
+        }
+
         window.addEventListener("storage", handleStorage)
-    }
+    },[])
 
     const handleStorage=(e)=>{
         setLoggedUser(localStorage.getItem("user") || null)
-    }
-
-    if (!loggedUser) {
-        return <Navigate to={redirectPath} replace />;
     }
 
     return children ? children : <Outlet />; 
