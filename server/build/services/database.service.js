@@ -63,19 +63,16 @@ var Database = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, this.connect()];
-                    case 1:
-                        _a.sent();
+                        _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, this.client.query(query, values)];
-                    case 2:
+                    case 1:
                         result = _a.sent();
                         return [2 /*return*/, result];
-                    case 3:
+                    case 2:
                         error_1 = _a.sent();
                         console.log(error_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         });
