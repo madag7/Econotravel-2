@@ -29,7 +29,7 @@ const validateToken= (req: any, res: Response, next: NextFunction) => {
             if(err) {
             res.status(403).send("token no válido");
             } else {
-                req.body.email= decoded;
+                req.body.email= decoded.email;
                 next();
             }
         });

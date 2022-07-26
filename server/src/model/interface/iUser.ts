@@ -7,4 +7,5 @@ export interface  iUser extends  iUserLogin {
     nombre?: string;
     rol?: string;
     permisos?: string;
+    user_id?: number;
 }
