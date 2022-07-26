@@ -21,13 +21,13 @@ export default function Search (){
             if(etiquetaActiva){
                 datos=datos.filter(dato=>{
                     if(etiquetaActiva === 'Ubicación'){
-                        return dato.Ubicacion === valorFiltro
+                        return dato.et_ubicacion === valorFiltro
                     }
                     if(etiquetaActiva === 'Transporte'){
-                        return dato.Transporte === valorFiltro
+                        return dato.et_transporte === valorFiltro
                     }
                     if(etiquetaActiva === 'Duración'){
-                        return dato.Duracion === valorFiltro
+                        return dato.et_duracion === valorFiltro
                     }
                     return true
                 })
@@ -87,9 +87,9 @@ export default function Search (){
                             
                             <section>
                                 <ContainerBtExp>
-                                    <button className={etiquetaActiva==='Ubicación'?'selectedButton':''}>{singleExp.Ubicacion}</button>
-                                    <button className={etiquetaActiva==='Transporte'?'selectedButton':''}>{singleExp.Transporte}</button>
-                                    <button className={etiquetaActiva==='Duración'?'selectedButton':''}>{singleExp.Duracion}</button>
+                                    <button className={etiquetaActiva==='Ubicación'?'selectedButton':''}>{singleExp.et_ubicacion}</button>
+                                    <button className={etiquetaActiva==='Transporte'?'selectedButton':''}>{singleExp.et_transporte}</button>
+                                    <button className={etiquetaActiva==='Duración'?'selectedButton':''}>{singleExp.et_duracion}</button>
                                 </ContainerBtExp>
                                 <TagsExp>
                                     <section>
