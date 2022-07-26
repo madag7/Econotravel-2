@@ -11,5 +11,14 @@ describe('/experiencias', ()=>
         const response = await request(app)
         .get('/experiencias')
         expect(response.status).toBe(200);
-    }))
+    })
+)
 
+describe("when missing info", () => {
+    test("should return a 500 status when user has an error.", async () => {
+        const response = await request(app)
+            .post('/experiencias')
+            .send({ titulo: "000000" });
+        expect(response.status).toEqual(500);
+    }) 
+})
