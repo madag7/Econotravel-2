@@ -10,8 +10,9 @@ const checkRol = async (req: Request,res: Response, next: NextFunction)=>{
         }
 
         const result = await userModel.getUserByEmail(email);
-
+        console.log(result.rol)
         if(result && result.rol==="admin"){
+            
             next()
         }else{
             res.status(403).send("No autorizado")

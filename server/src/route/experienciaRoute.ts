@@ -7,8 +7,8 @@ const router = Router();
 
 router.get('/experiencias', experienciaController.getAllExperiences);
 router.get('/experiencias/:experiencia_id', experienciaController.getOneExperience);
-router.post('/experiencias', jwt.validateToken, admin.checkRol, experienciaController.saveExperience)
-router.put('/experiencias/:experiencia_id', jwt.validateToken, admin.checkRol, experienciaController.modifExperience)
-router.delete('/experiencias/:experiencia_id', jwt.validateToken, admin.checkRol, experienciaController.deleteExperience)
+router.post('/admin/experiencias', jwt.validateToken, admin.checkRol, experienciaController.saveExperience)
+router.put('/admin/experiencias/:experiencia_id', jwt.validateToken, admin.checkRol, experienciaController.modifExperience)
+router.delete('/admin/experiencias/:experiencia_id', jwt.validateToken, admin.checkRol, experienciaController.deleteExperience)
 
 export default router;
