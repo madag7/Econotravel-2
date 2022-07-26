@@ -26,7 +26,7 @@ class Experiencia{
         const result:any = await connection.query(queryStr,[exp.img, exp.titulo, exp.descripcion, exp.precio, exp.duracion, exp.accesibilidad,exp.et_ubicacion, exp.et_transporte, exp.et_duracion, exp.experiencia_id]);
         console.log(result)
         return result.rows;
-   }
+    }
 
     async deleteExperience(experiencia_id:any){
         const queryStr = 'DELETE FROM experiencias WHERE experiencia_id=$1 RETURNING *';
