@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(loginRoute);
 
 describe('POST/login', ()=>
-    test('when received fields are not correct,should return status 404 ',async ()=>{
+    test('when received fields are not correct,should return status 400 ',async ()=>{
         const response = await request(app)
         .post('/login')
         .send ({nombre:'Belén'})
@@ -19,7 +19,7 @@ describe('POST/login', ()=>
 describe("POST/login", () => {
    
 
-        test('when user and password are correct, should respond with a 201', async () => {
+        test('when user and password are correct, should respond with a 200', async () => {
             const response = await request(app)
                 .post('/login')
                 .send({
