@@ -8,12 +8,12 @@ const userController = {
             const {nombre, email, password, rol, permisos, ...users}: iUser = req.body;
             
             if(!email  || !password){
-                res.status(400).send('Falta el correo electrónico o contraseña');
+                res.status(404).send('Falta el correo electrónico o contraseña');
             }
             
             const result = await userModel.saveUser({nombre, email, password, rol,permisos });
             result
-                ? res.status(201).json({ result: result}) 
+                ? res.status(200).json({ result: result}) 
                 : res.status(500).send('No se pudo crear un nuevo usuario');
         }catch(error: any){
             res.status(400).send(error.message);
@@ -35,7 +35,7 @@ const userController = {
             const result: any = await userModel.getAllUsers();
         
             result
-                ? res.status(201).json(result)
+                ? res.status(200).json(result)
                 : res.status(500).send('Hubo un error en la obtención los datos');
         
         } catch (error: any) {
@@ -51,7 +51,7 @@ const userController = {
                 console.log(result.rows[0])*/
                 const result = await userModel.modifUser(req.params.user_id, req.query)
                 result
-                ? res.status(201).json({result})
+                ? res.status(200).json({result})
                 : res.status(500).send('No se pudo modificar el usuario');
          }catch (error: any){
                 res.status(400).send(error.message);
@@ -65,7 +65,7 @@ const userController = {
                 const result = await userModel.deleteUser(param);
                 console.log(result, "llega al result")
                 result
-                        ? res.status(201).json({ result: `user deleted with ID: ${param}`})
+                        ? res.status(200).json({ result: `user deleted with ID: ${param}`})
                         : res.status(500).send('No se pudo borrar el usuario seleccionado');
             }catch (error: any){
                 res.status(400).send(error.message);

@@ -2,32 +2,37 @@ import express from 'express';
 import request from 'supertest';
 import {loginRoute} from '../../src/route';
 
+
 const app = express();
 app.use(express.json())
 app.use(loginRoute);
 
-describe('/login', ()=>
-    test('should return status 200 ',async ()=>{
+describe('POST/login', ()=>
+    test('when received fields are not correct,should return status 404 ',async ()=>{
         const response = await request(app)
-        .get('/login')
-        expect(response.status).toBe(200);
+        .post('/login')
+        .send ({nombre:'Belén'})
+        expect(response.status).toBe(400);
     })
 )
 
-describe("POST /user", () => {
-    describe("when user and password are correct", () => {
+describe("POST/login", () => {
+   
 
-        test('should respond with a 201', async () => {
+        test('when user and password are correct, should respond with a 201', async () => {
             const response = await request(app)
-                .post('/user')
+                .post('/login')
                 .send({
-                    name:"Belen",
-                    email: "mi@mail.com",
-                    password: "1234"
+            
+                    email: "antonio@antonio.com",
+                    password: "123456"
                 });
 
-            expect(response.status).toEqual(201);
+            expect(response.status).toEqual(200);
         })
 
     })
-})
+
+
+
+  
