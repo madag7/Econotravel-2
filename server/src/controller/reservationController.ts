@@ -1,6 +1,8 @@
 import {Request,Response} from 'express';
 import reservationModel from '../model/reservationModel'
 import iReservation from '../model/interface/iReservation';
+import userModel from '../model/userModel';
+import { iUser } from '../model/interface/iUser';
 
 const reservationController = {
         getAllReservations: async (req:Request,res:Response) =>{
@@ -24,13 +26,15 @@ const reservationController = {
 
         saveReservation: async (req:Request,res:Response)=>{
                 try{
-                        const{experiencia_id, user_id, nombre, apellidos,telefono, direccion, email, titulo_experiencia, cantidad_contratada,fecha, precio_total, ...reservas}: iReservation= req.body
+                        const{experiencia_id, nombre, apellidos,telefono, direccion, email, email_reserva, titulo, cantidad_contratada,fecha, precio_total, ...reservas}: any= req.body
 
-                        if(!experiencia_id || !user_id || !nombre || !apellidos || !telefono || !direccion || !email || !titulo_experiencia || !cantidad_contratada || !fecha|| !precio_total){
+                        const user: iUser = await userModel.getUserByEmail(email)
+
+                        if(!experiencia_id || !user.user_id || !nombre || !apellidos || !telefono || !direccion || !email || !titulo || !cantidad_contratada || !fecha|| !precio_total){
                                 res.status(400).json({message:'Falta alguno de los campos'});
                         }
 
-                        const result = await reservationModel.saveReservation({experiencia_id, user_id, nombre, apellidos,telefono, direccion, email, titulo_experiencia, cantidad_contratada,fecha, precio_total, ...reservas});
+                        const result = await reservationModel.saveReservation({experiencia_id, user_id:user.user_id, nombre, apellidos, telefono, direccion, email_reserva, titulo, cantidad_contratada,fecha, precio_total, ...reservas});
                         result
                                 ? res.status(201).json({ result: result.rows})
                                 : res.status(500).send('No se pudo crear una nueva reserva');
@@ -41,9 +45,9 @@ const reservationController = {
 
         modifReservation: async (req:Request,res:Response) => {
                 try{
-                        const{experiencia_id, user_id, nombre, apellidos,telefono, direccion, email, titulo_experiencia, cantidad_contratada,fecha, precio_total, ...reservas}: iReservation= req.body
+                        const{experiencia_id, user_id, nombre, apellidos,telefono, direccion, email_reserva, titulo, cantidad_contratada,fecha, precio_total, ...reservas}: iReservation= req.body
                         console.dir(req.body)
-                        const result = await reservationModel.modifReservation({experiencia_id, user_id, nombre, apellidos,telefono, direccion, email, titulo_experiencia, cantidad_contratada,fecha, precio_total, ...reservas});
+                        const result = await reservationModel.modifReservation({experiencia_id, user_id, nombre, apellidos,telefono, direccion, email_reserva, titulo, cantidad_contratada,fecha, precio_total, ...reservas});
 
                         result
                         ? res.status(201).json({ result: result.rows})

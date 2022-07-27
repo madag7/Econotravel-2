@@ -5,8 +5,8 @@ export default interface iReservation{
     apellidos: string
     telefono: number
     direccion: string
-    email: string
-    titulo_experiencia: string
+    email_reserva: string
+    titulo: string
     cantidad_contratada: string
     fecha: string
     precio_total: number
