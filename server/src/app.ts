@@ -1,5 +1,5 @@
 import express from 'express';
-import {experienciaRoute, userRoute, loginRoute} from './route'
+import {reservationRoute,experienciaRoute, userRoute, loginRoute} from './route'
 import cors from 'cors'
 import connection from './services/database.service'
 
@@ -16,5 +16,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(experienciaRoute)
 app.use(userRoute);
 app.use(loginRoute)
+app.use(reservationRoute)
+
 
 export default app;
