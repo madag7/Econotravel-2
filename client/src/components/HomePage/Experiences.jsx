@@ -56,7 +56,7 @@ export default function Experiences () {
 
     return(
         <ThreeExperiencesSection>
-            <h1> Experiencias en el área de Barcelona</h1>
+            <h1>Experiencias en el área de Barcelona</h1>
 
             <FilterExp>
                 {Desplegables.map((desplegableEtiqueta)=>(

@@ -13,3 +13,5 @@ router.put('/admin/user/:user_id', jwt.validateToken, admin.checkRol, userContro
 router.delete('/admin/user/:user_id', jwt.validateToken, admin.checkRol, userController.deleteUser)
 
 export default router
+
+
